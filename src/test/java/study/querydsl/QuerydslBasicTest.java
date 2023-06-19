@@ -73,4 +73,27 @@ public class QuerydslBasicTest {
         assertThat(findMember.getUsername()).isEqualTo("member1");
     }
 
+    @Test
+    public void resultFetch() {
+//        List<Member> fetch = queryFactory.selectFrom(member).fetch();
+//
+//        Member fetchOne = queryFactory.selectFrom(member).fetchOne();
+//
+//        Member fetchFirst = queryFactory.selectFrom(member).fetchFirst();
+
+//        QueryResults<Member> results = queryFactory.selectFrom(member).fetchResults();
+//        results.getTotal();
+//        List<Member> content = results.getResults();
+//        queryFactory.selectFrom(member).fetchCount();
+    }
+
+    @Test
+    public void count() {
+        Long totalCount = queryFactory
+                //.select(Wildcard.count) //select count(*)
+                .select(member.count()) //select count(member.id)
+                .from(member)
+                .fetchOne();
+        System.out.println("totalCount = " + totalCount);
+    }
 }
