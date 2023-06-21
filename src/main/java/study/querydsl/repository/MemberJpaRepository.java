@@ -104,7 +104,8 @@ public class MemberJpaRepository {
                 .where(
                         usernameEq(condition.getUsername()),
                         teamNameEq(condition.getTeamName()),
-                        ageBetween(condition.getAgeLoe(), condition.getAgeLoe())
+                        ageGoe(condition.getAgeGoe()),
+                        ageLoe(condition.getAgeLoe())
                 )
                 .fetch();
     }
@@ -122,7 +123,7 @@ public class MemberJpaRepository {
     }
 
     private BooleanExpression teamNameEq(String teamName) {
-        return hasText(teamName) ? null : member.username.eq(teamName);
+        return hasText(teamName) ? member.team.name.eq(teamName) : null;
     }
 
     private BooleanExpression usernameEq(String username) {
